@@ -1,0 +1,534 @@
+@import 'reset';
+@import 'mixins';
+
+body {
+  font-family: 'Roboto', sans-serif;
+  min-width: 303px;
+  font-size: 18px;
+}
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+//Главный контейнер с информацией
+.content-container {
+  flex: 1;
+  display: flex;
+}
+
+//Страница приветствия
+
+.welcom-content {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.welcome__btn-start {
+  padding: 10px 15px;
+  background: #3e5066;
+  text-decoration: none;
+  color: #fff;
+}
+
+.welcome__info {
+  margin: 25px 0;
+  text-align: start;
+  line-height: 1.3;
+}
+
+.welcom {
+  text-align: center;
+  width: 600px;
+}
+
+.welcome__title {
+  font-size: 32px;
+}
+
+.welcome__benefits {
+  text-align: center;
+  font-size: 24px;
+}
+
+.welcome__list {
+  margin: 10px 0 22px 26px;
+
+  li {
+    position: relative;
+    text-align: start;
+    padding: 15px 10px;
+    line-height: 1.3;
+  }
+
+  li:before {
+    position: absolute;
+    content: url(../image/welcome-done.png);
+    left: -27px;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+//Главная страница
+
+.footer-container {
+  @include flex(center);
+  height: 60px;
+  background: #c7ccd4;
+
+}
+
+//Меню
+
+.menu-page {
+  background: #22344d;;
+  min-width: 250px;
+  flex: 1;
+  transition: all 0.5s ease;
+}
+
+.menu-page {
+  li {
+    list-style: none;
+    background: #3e5066;;
+    margin: 15px;
+    text-align: center;
+    &.active {
+      background: #57708f;
+      box-shadow: 0 0 15px #57708f;
+    }
+  }
+  
+  a {
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 20px;
+
+    display: block;
+  }
+}
+//Страница калькулятора
+
+.cacl-page, .lifehacks-page, .info-page {
+  background: #3e5066;
+  flex: 5;
+  color: #fff;
+  transition: all 0.5s ease;
+}
+
+.calc-header {
+  height: 100px;
+  @include flex(center);
+}
+
+.calc-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+//Прогресс бар
+
+.progressbar li {
+  float: left;
+  width: 50%;
+  position: relative;
+  text-align: center;
+}
+
+.progressbar {
+  width: 600px;
+  z-index: 1;
+  counter-reset: list;
+}
+
+.progressbar li:before {
+  counter-increment: list;
+  content: counter(list);
+  width: 30px;
+  height: 30px;
+  border: 2px solid #3aac5d;
+  display: block;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  line-height: 30px;
+  background: #3aac5d;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+
+.progressbar li:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: #3aac5d;
+  top: 15px;
+  left: -50%;
+  z-index: -1;
+}
+
+.progressbar li.active+li:after {
+  background: #fff;
+}
+
+.progressbar li.active+li:before {
+  border-color: #979797;
+  background: #fff;
+  color: #979797
+}
+
+.progressbar li:first-child:after {
+  content: none;
+}
+
+//Блок "ВЕС"
+
+#weight {
+  right: 20px;
+  @include inputs();
+}
+
+.calc-weight {
+  display: flex;
+  position: relative;
+  width: 200px;
+  height: 35px;
+  margin: 20px 0;
+  label {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+.calc-drink__add-btn {
+  border: none;
+  background: #c7ccd4;
+  padding: 7px 20px;
+  margin: 20px 0;
+  font-size: 18px;
+  color: #3e5066;
+}
+
+//блок "НАПИТКИ"
+
+.calc-value {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+}
+
+.calc-dose {
+  @include inputBlock;
+}
+
+.calc-alcohol {
+  @include inputBlock;
+}
+
+#dose,
+#alcohol {
+  left: 40px;
+  @include inputs;
+}
+
+.blackAlcohol,
+.blackDose, .blackWeight {
+  color: #fff;
+  border: 2px solid #c7ccd4;
+  transition: all 0.5s ease;
+}
+
+.cacl-alcohol__item {
+  display: flex;
+  position: relative;
+  margin: 10px 0;
+  border-radius: 3px;
+  width: 570px;
+}
+
+.calc-speed {
+  margin: 20px 0px;
+}
+
+.calc-drinks {
+  text-align: center;
+  p {
+    font-size: 22px;
+    border-bottom: 1px solid;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+  }
+}
+
+.calc-drink__remove-btn {
+  position: absolute;
+  right: -30px;
+  top: 6px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.3;
+  background-color: transparent;
+  font-size: 0;
+  border: none;
+  transition: all 0.5s ease;
+}
+
+.cacl-alcohol__item:first-child .calc-drink__remove-btn {
+  display: none;
+}
+
+.calc-drink__remove-btn:before,
+.calc-drink__remove-btn:after {
+  position: absolute;
+  top: 0;
+  left: 8;
+  content: ' ';
+  height: 25px;
+  width: 3px;
+  background: #fff;
+  transition: all 0.5s ease;
+}
+
+.calc-drink__remove-btn:before {
+  transform: rotate(45deg);
+}
+
+.calc-drink__remove-btn:after {
+  transform: rotate(-45deg);
+}
+
+.calc-drink__remove-btn:hover {
+  opacity: 1;
+}
+
+.display-remove-btn {
+  display: inline-block;
+}
+
+#drinks,
+#speed-drink,
+#stomach,
+#time-drink {
+  padding: 7px 32px 7px 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 18px;
+}
+
+.blackDrinks,
+.blackStomach,
+.blackSpeedDrink,
+.blackTimeDrink {
+  background: #6c7d92;
+  color: #fff;
+  border: 1px solid #ccc;
+}
+
+.select {
+  position: relative;
+}
+
+.select:after {
+  content: "";
+  display: block;
+  border-style: solid;
+  border-width: 6px 5px 0 5px;
+  border-color: #000 transparent transparent transparent;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  z-index: 1;
+  margin-top: -3px;
+}
+
+.calc-speed,
+.calc-stomach,
+.time-drink,
+.calc-time {
+  @include flex(space-around);
+  width: 600px;
+}
+
+//Кнопка рассчёта
+
+.activeCalc {
+  border: none;
+  background: #3aac5d;
+  box-shadow: 0 0 10px #3aac5d;
+  padding: 7px 20px;
+  margin: 20px 0;
+  font-size: 18px;
+  color: #fff;
+  transition: 0.4s;
+}
+
+.disabledCalc {
+  background: #fa5757;
+  box-shadow: none;
+  filter: brightness(70%);
+}
+
+.errorWeight {
+  color: #fa5757;
+  padding-bottom: 15px;
+}
+
+//------------ Результаты ----------------
+
+.calc-result {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.calc-result__title {
+  margin: 15px auto;
+  @include resultTitle(7px 15px, #c7ccd4);
+}
+
+.calc-result__ppm {
+  font-size: 32px;
+  color: #fa5757;
+  box-shadow: 0 0 10px #fa5757;
+  padding: 10px 20px;
+  margin: 0 auto;
+}
+
+.timer-numbers {
+  font-size: 24px;
+  border: 1px solid #c7ccd4;
+  margin: 0 auto;
+  width: 180px;
+  padding: 5px 10px;
+}
+
+.result-info {
+  display: flex;
+  margin: 30px 0;
+  justify-content: space-around;
+}
+
+.image-result {
+  margin: auto;
+  img {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+.condition-result {
+  padding: 0 40px;
+}
+
+.titleBehavior,
+.titleViolations {
+  margin-bottom: 8px;
+  @include resultTitle(0px 15px 7px, yellow);
+}
+
+.resultBehavior,
+.resultViolations {
+  padding-bottom: 28px;
+  li {
+    padding: 3px 0;
+  }
+}
+
+//----------- Лайфхаки -------------
+
+.main-content {
+  max-width: 1200px;
+  padding: 32px 20px;
+  margin: 0 auto;
+}
+
+.lifehacks-page__title {
+  font-size: 32px;
+  text-align: center;
+  padding: 10px 20px;
+  margin-bottom: 40px;
+}
+
+.lifehacks-page__subtitle {
+  border-left: 1px solid yellow;
+  font-size: 22px;
+  padding: 10px 10px 0 10px;
+  z-index: 2;
+  display: inline;
+  background: #536070;
+  border-radius: 10px 10px 0 0;
+}
+
+.lifehacks-page__text {
+  border-left: 1px solid yellow;
+  margin-bottom: 20px;
+  line-height: 1.3;
+  background: #536070;
+  border-radius: 0 10px 10px 10px;
+  padding: 10px;
+}
+
+
+.vodka {
+  display: flex;
+  
+}
+
+.info-percent {
+  width: 20px;
+  height: 20px;
+}
+
+.progress-beer {
+  @include infoDrink(70%, #f77979);
+}
+
+.progress-vodka {
+  @include infoDrink(65%, #e0f759);
+}
+    
+.progress-wine {
+  @include infoDrink(62%, #36d15d);
+}
+
+.progress-cognac {
+  @include infoDrink(21%, #3693d1);
+}
+
+.progress-other {
+  @include infoDrink(21%, #f7b23b);
+}
+
+.info-content {
+  display: flex;
+  align-items: center;
+}
+
+.info-content__text {
+  width: 10%;
+  font-size: 20px;
+  margin: 0 30px;
+}
+
+.info-title {
+  text-align: center;
+  font-size: 32px;
+  margin: 30px 0px;
+}
+
